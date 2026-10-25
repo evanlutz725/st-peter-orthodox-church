@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+const {title,description='An ancient faith. A welcoming community. Visit St. Peter the Apostle Antiochian Orthodox Church in Fort Myers, serving Southwest Florida.',image='/assets/church.webp'} = Astro.props;
+const path = Astro.url.pathname;
+const nav = [['Our parish','/about/'],['New to Orthodoxy?','/orthodoxy/'],['Calendar','/calendar/'],['Resources','/resources/'],['News','/news/']];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{title ? `${title} | ${site.name}` : `${site.name} | Come and see`}</title>
+    <meta name="description" content={description}/><meta name="theme-color" content="#343c31"/>
+    <meta name="robots" content="noindex, nofollow"/>
+    <link rel="icon" type="image/png" href="/assets/favicon.png"/>
+    <link rel="canonical" href={new URL(path, Astro.site)}/>
+    <meta property="og:title" content={title || site.name}/><meta property="og:description" content={description}/>
+    <meta property="og:type" content="website"/><meta property="og:image" content={new URL(image, Astro.site)}/>
+    <meta property="og:url" content={new URL(path, Astro.site)}/>
+    <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'Church',name:site.fullName,url:Astro.site,telephone:'+12392217537',address:{'@type':'PostalAddress',streetAddress:site.address,addressLocality:'Fort Myers',addressRegion:'FL',postalCode:'33967',addressCountry:'US'}})}/>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="topbar"><div class="wrap"><span>Rooted in the ancient faith. At home in Southwest Florida.</span><a href="/calendar/">Sunday Divine Liturgy · 9:30 am <Icon name="arrow" size={14}/></a></div></div>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a href="/" class="brand" aria-label="St. Peter Orthodox Church home"><span class="brand-mark"><Icon name="cross" size={38}/></span><span><span class="brand-title">St. Peter</span><span class="brand-subtitle">ORTHODOX CHURCH</span></span></a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Main navigation">{nav.map(([label,href])=><a href={href} aria-current={path.startsWith(href)?'page':undefined}>{label}</a>)}<a class="button nav-visit" href="/visit/">Plan your visit <Icon name="arrow" size={17}/></a></nav>
+      </div>
+    </header>
+    <main id="main"><slot/></main>
+    <section class="invitation"><div class="wrap invitation-inner"><div><p class="eyebrow">There is a place for you here</p><h2>Come and see.</h2><p>A lifelong Orthodox Christian, a curious visitor, or somewhere in between.<br class="desktop"/> We would love to welcome you.</p></div><a class="button button-light" href="/visit/">Join us this Sunday <Icon name="arrow"/></a></div></section>
+    <footer><div class="wrap footer-grid"><div><a href="/" class="brand footer-brand"><span class="brand-mark"><Icon name="cross" size={38}/></span><span><span class="brand-title">St. Peter</span><span class="brand-subtitle">ORTHODOX CHURCH</span></span></a><p>Ancient faith. Living community.<br/>Serving Fort Myers, Estero, Bonita Springs,<br/>Naples, and all of Southwest Florida.</p></div><div><h3>Come worship</h3><p>Divine Liturgy · Sundays at 9:30 am</p><a href="/calendar/">Full service calendar <Icon name="arrow" size={16}/></a><p>{site.address}<br/>{site.city}</p><a href={site.directions} target="_blank" rel="noopener">Get directions <Icon name="northeast" size={16}/></a></div><div><h3>Stay connected</h3><a href="/news/">Parish news</a><a href="/homilies/">Homilies</a><a href="/contact/">Contact the parish</a><a href="tel:+12392217537">{site.phone}</a></div></div><div class="wrap footer-bottom"><span>© {new Date().getFullYear()} St. Peter Orthodox Church</span><a href="https://www.antiochian.org/" target="_blank" rel="noopener">Antiochian Orthodox Christian Archdiocese <Icon name="northeast" size={13}/></a></div></footer>
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const nav = document.querySelector<HTMLElement>('#navigation');
+      function closeMenu(){ toggle?.setAttribute('aria-expanded','false'); nav?.classList.remove('is-open'); }
+      toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav?.classList.toggle('is-open',open);});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();toggle?.focus();}});
+      document.addEventListener('click',e=>{if(e.target instanceof Node && !document.querySelector('.site-header')?.contains(e.target)) closeMenu();});
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+import {site} from '../data/site';
+const calendarUrl=`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(site.calendarId)}&ctz=America%2FNew_York&mode=AGENDA&showTitle=0&showPrint=0&showCalendars=0&showTabs=0&showTz=1&bgcolor=%23f8f6f0`;
+---
+<Layout title="Parish calendar"><PageIntro title="A rhythm of prayer." label="Parish calendar" description="Worship, feast days, and life together at St. Peter. All times are local to Fort Myers, Florida (Eastern Time)."/><div class="wrap page-body"><div class="section-heading"><div><p class="eyebrow">Our regular Sunday gathering</p><h2>Divine Liturgy · 9:30 am</h2></div><a class="text-link" href="/visit/">First time here? <Icon name="arrow" size={17}/></a></div><p>Consult the parish calendar for Orthros, additional services, special events, and changes to the regular schedule.</p><iframe class="calendar-frame" src={calendarUrl} title="St. Peter Orthodox Church live parish calendar, Eastern Time" loading="lazy"></iframe><div class="notice">If the embedded calendar does not appear, <a class="text-link" href={`https://calendar.google.com/calendar/u/0/r?cid=${encodeURIComponent(site.calendarId)}`} target="_blank" rel="noopener">open the parish calendar in Google Calendar <Icon name="northeast" size={15}/></a>. You can also confirm service times by calling <a href="tel:+12392217537">{site.phone}</a>.</div><a class="button button-outline" href={`https://calendar.google.com/calendar/ical/${encodeURIComponent(site.calendarId)}/public/basic.ics`}>Subscribe to the calendar <Icon name="calendar" size={18}/></a></div></Layout>
