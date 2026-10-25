@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import {site} from '../data/site';
+---
+<Layout title="Terms & conditions" description="Terms for using the St. Peter Orthodox Church informational website and its resources.">
+  <PageIntro title="Terms & conditions" label="Using this website" description="Effective October 25, 2026"/>
+  <div class="wrap page-body legal-layout">
+    <article class="prose legal-copy">
+      <p>These terms describe the use of this informational website for {site.fullName} in Fort Myers, Florida. Please also read our <a href="/privacy-policy/">privacy policy</a> for information about hosting, external services, and communications.</p>
+      <h2>Purpose of the website</h2>
+      <p>This website shares information about parish worship, visits, teachings, newsletters, prayer, and community life. Reading the site, listening to a homily, or using a contact link does not register you for an event, create a membership, or make a reservation.</p>
+      <h2>Schedules and published information</h2>
+      <p>Service times, events, contact details, and other information may change. Check the parish calendar and contact the parish to confirm information that is important to your plans. Dated newsletters describe the circumstances at the time they were published; older announcements are not a statement of the current schedule.</p>
+      <p>We aim to keep the website useful and accurate, but do not guarantee that every page or third-party source will always be complete, current, or free of errors. Please let the parish know if you find an error.</p>
+      <h2>Respectful and lawful use</h2>
+      <p>You may browse the public pages and use the available resources for lawful purposes. Do not attempt to disrupt the site, gain unauthorized access to systems, introduce malicious code, impersonate the parish, or use published contact details to harass others or send unsolicited bulk messages.</p>
+      <h2>Content and permissions</h2>
+      <p>Text, photographs, recordings, artwork, and other materials remain the property of their respective owners. Making material available on this website does not transfer ownership or grant unrestricted republication rights.</p>
+      <p>You are welcome to share links to public pages. For permission to reproduce or republish material, contact the parish or the identified rights holder. Any permission or license stated for an individual resource takes precedence for that resource.</p>
+      <h2>Third-party services</h2>
+      <p>The site includes Google Calendar and Google Maps, external audio recordings, and links to podcast platforms and other resources. Those services are operated by their respective providers. Their availability, content, privacy practices, and terms are outside this website’s control. A link does not imply endorsement of everything on the destination website.</p>
+      <h2>Contacting the parish</h2>
+      <p>Phone and text links open services on your device. Your provider’s normal terms and charges may apply. Response times vary, and sending a message does not guarantee an immediate response or an appointment. Use the <a href="/contact/">contact page</a> for the published parish contact options.</p>
+      <h2>Availability and limitations</h2>
+      <p>The website and its public resources are provided as available. Access may be interrupted for maintenance, technical issues, or reasons outside the parish’s control. To the extent permitted by applicable law, the parish does not provide warranties of uninterrupted availability or fitness for a particular purpose and is not responsible for losses arising from reliance on outdated information or the failure of an external service.</p>
+      <p>Nothing in these terms limits rights or responsibilities that cannot lawfully be excluded or limited.</p>
+      <h2>Changes to these terms</h2>
+      <p>These terms may be updated as the website changes. The effective date at the top identifies the current version. Material changes will be reflected on this page.</p>
+      <h2>Questions</h2>
+      <p>Contact {site.fullName} at <a href="tel:+12392217537">{site.phone}</a>, or write to {site.address}, {site.city}.</p>
+    </article>
+    <aside class="sidebar"><p class="eyebrow">Website information</p><h2>Stay informed.</h2><a href="/privacy-policy/">Privacy policy</a><a href="/contact/">Contact the parish</a></aside>
+  </div>
+</Layout>

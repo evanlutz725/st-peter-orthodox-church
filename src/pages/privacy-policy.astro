@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import {site} from '../data/site';
+---
+<Layout title="Privacy policy" description="How the St. Peter Orthodox Church website handles information and uses third-party services.">
+  <PageIntro title="Privacy policy" label="Your privacy" description="Effective October 25, 2026"/>
+  <div class="wrap page-body legal-layout">
+    <article class="prose legal-copy">
+      <p>This policy explains how information is handled when you use this website for {site.fullName} in Fort Myers, Florida. It covers this website, rather than every parish activity or an external website you choose to visit.</p>
+      <h2>Information from your visit</h2>
+      <p>This is an informational website. This version has no visitor accounts, online contact forms, payment processing, advertising trackers, or analytics scripts. The website’s own code does not set cookies or save information in your browser’s local storage.</p>
+      <p>Our hosting provider, Netlify, processes technical information needed to deliver and protect the website. This can include your IP address, requested pages, access times, browser information, and error or security information. Hosting records are handled through the provider’s systems and retention practices.</p>
+      <h2>Information you choose to share</h2>
+      <p>If you call, text, or write to the parish using the contact details on this website, you choose what information to provide. That communication happens through your phone, messaging service, or postal service, rather than an online form on this website.</p>
+      <p>Information you provide may be used to answer your question, arrange a visit or conversation, and provide the parish assistance you request. Please share only what is needed for your inquiry. Contact information provided for an inquiry is not collected by this website for advertising or sale.</p>
+      <h2>Embedded services and external links</h2>
+      <p>Some features make connections to other services. These providers may receive technical information such as your IP address, browser details, and the page making the request. They may also use cookies or other technologies under their own policies.</p>
+      <ul>
+        <li><strong>Google Calendar and Google Maps:</strong> the calendar and visit pages include Google embeds. Google processes information when those features load or you interact with them.</li>
+        <li><strong>Google Fonts:</strong> fonts are requested from Google’s font service when pages load.</li>
+        <li><strong>Audio recordings:</strong> the homily players request recordings from the parish’s existing media hosting when you start playback. The players are configured not to preload the audio.</li>
+        <li><strong>Podcast and resource links:</strong> following links to Apple Podcasts, Amazon Music, the Antiochian Archdiocese, or other resources takes you to services with their own privacy practices.</li>
+        <li><strong>Original parish website:</strong> links to older newsletters and other original parish material may lead to the existing WordPress website, whose features and data practices may differ from this copy.</li>
+      </ul>
+      <p>Read the providers’ notices: <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Netlify privacy statement</a>, <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google privacy policy</a>, <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple privacy policy</a>, and <a href="https://www.amazon.com/privacy" target="_blank" rel="noopener">Amazon privacy notice</a>.</p>
+      <h2>Your choices</h2>
+      <p>You can use browser settings to limit cookies, block third-party content, or prevent media playback. Some embedded features may then be unavailable. The parish’s phone number and address remain available if you prefer to confirm a service time or ask a question directly.</p>
+      <p>You may contact the parish to ask about information you have provided, request a correction, or request deletion. The parish may need to verify a request and may retain information needed for an ongoing inquiry, legitimate parish recordkeeping, or a legal obligation. Third-party providers control information held in their own systems; contact those providers about their records.</p>
+      <h2>Retention and security</h2>
+      <p>Information provided directly to the parish is kept as reasonably needed for the purpose for which it was provided, relevant parish records, and applicable obligations. Hosting and third-party service records follow those providers’ practices. No website or method of communication can guarantee absolute security.</p>
+      <h2>Children’s information</h2>
+      <p>This website provides information for the general public and does not offer children’s accounts or invite children to submit personal information through the site. A parent or guardian who has a concern about information provided by a child can contact the parish.</p>
+      <h2>Changes to this policy</h2>
+      <p>If the website’s features or information practices change, this page will be updated with a new effective date. Please check it again when using new features.</p>
+      <h2>Contact us</h2>
+      <p>{site.fullName}<br/>{site.address}<br/>{site.city}<br/><a href="tel:+12392217537">{site.phone}</a></p>
+      <p>You can also find contact options on the <a href="/contact/">parish contact page</a>.</p>
+    </article>
+    <aside class="sidebar"><p class="eyebrow">Website information</p><h2>Clear and simple.</h2><a href="/terms-and-conditions/">Terms & conditions</a><a href="/contact/">Contact the parish</a></aside>
+  </div>
+</Layout>
