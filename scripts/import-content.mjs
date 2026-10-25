@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import * as cheerio from 'cheerio';
 import sharp from 'sharp';
+import { normalizeArticleHeadings, labelArticleImageLinks } from './lib/article-headings.mjs';
 
 const origin = 'https://stpeterorthodoxchurch.com';
 await mkdir('src/data', { recursive: true });
@@ -24,9 +25,9 @@ async function localImage(url) {
     try {
       const file = `/assets/imported/${createHash('sha256').update(url).digest('hex').slice(0,16)}.webp`;
       const bytes = Buffer.from(await (await get(url)).arrayBuffer());
-      await sharp(bytes).rotate().resize({ width:1200, withoutEnlargement:true }).webp({quality:78}).toFile(`public${file}`);
-      return file;
-    } catch { return url; }
+      const { width, height } = await sharp(bytes).rotate().resize({ width:1200, withoutEnlargement:true }).webp({quality:78}).toFile(`public${file}`);
+      return { src: file, width, height };
+    } catch { return { src: url }; }
   })();
   assets.set(url, task);
   return task;
@@ -46,10 +47,14 @@ async function clean(html) {
   for (const el of $('img').toArray()) {
     const src = $(el).attr('src');
     if (!src || /bible\.png|church\.png|roman\.png|Christian\.png/.test(src)) { $(el).remove(); continue; }
-    $(el).attr('src',await localImage(new URL(src,origin).href));
+    const image = await localImage(new URL(src,origin).href);
+    $(el).attr('src',image.src);
+    if (image.width && image.height) $(el).attr({ width: image.width, height: image.height });
     $(el).attr('loading','lazy'); $(el).attr('decoding','async');
   }
   $('p,ul,li').each((_,el)=>{ if (!$(el).text().trim() && !$(el).find('img,a,br').length) $(el).remove(); });
+  normalizeArticleHeadings($);
+  labelArticleImageLinks($);
   return $.html().replace(/<!--[^]*?-->/g,'');
 }
 const plain = html => cheerio.load(html).text().replace(/\s+/g,' ').trim();

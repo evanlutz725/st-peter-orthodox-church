@@ -20,6 +20,7 @@ Astro 7 requires Node 22.23.4 or newer. A compatible Node runtime is included as
 - Eight migrated parish and prayer articles, plus six recent newsletters imported from the public WordPress REST API.
 - Six recent podcast episodes imported from the parish's public RSS feed, with native audio controls and Apple Podcasts / Amazon Music links.
 - The parish's existing public Google Calendar, with an ICS subscription and direct-link fallback.
+- Self-hosted, licensed Latin font subsets and responsive WebP image sources keep the initial page lightweight.
 - Local optimized WebP images sourced from the existing parish website. Interior imagery is retained from that website and is not independently identified as a photograph of this parish.
 - Accessible navigation, skip link, keyboard focus styles, reduced-motion support, responsive layouts, metadata, and old-path redirects.
 
@@ -37,7 +38,7 @@ Common parish details and resource cards: `src/data/site.ts`. Layout and navigat
 
 ## Deployment
 
-Netlify project: `st-peter-orthodox-fort-myers` (ID `503f2a04-4bbe-444e-827b-16c171a0ab01`). Build command: `npm run build`; publish directory: `dist`.
+Netlify project: `st-peter-orthodox-fort-myers` (ID `503f2a04-4bbe-444e-827b-16c171a0ab01`). Build command: `npm run build && npm run check:links`; publish directory: `dist`.
 
 `.netlify/` is ignored because it contains checkout-local deployment state. No credentials belong in the repository.
 
@@ -52,3 +53,7 @@ The new Netlify copy is intentionally excluded from search indexing while the ex
 - Podcast RSS: https://rss.libsyn.com/shows/548077/destinations/5263490.xml
 
 Parish content and original photography retain their existing ownership. No new license is granted for third-party material.
+
+## Release verification
+
+See `docs/QA-report.md` for the October 25 responsive, keyboard, contrast, content, and deployment checks. The Netlify build runs the static integrity checks before a deployment can publish. Regenerate responsive images and bundled fonts with `node scripts/prepare-assets.mjs` only when those source assets need updating.
