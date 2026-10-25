@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+---
+<section class="upcoming-section" id="this-week" aria-labelledby="week-title">
+  <div class="wrap section">
+    <div class="section-heading"><div><p class="eyebrow">Our rhythm of prayer</p><h2 id="week-title">This week at <em>St. Peter.</em></h2></div><a class="text-link" href="/calendar/">Full weekly calendar <Icon name="arrow" size={17}/></a></div>
+    <p class="week-status" id="week-status" role="status">Upcoming services and gatherings · All times Eastern</p>
+    <div class="week-content" data-upcoming>
+      <div class="schedule-fallback"><div><p class="eyebrow">Our regular Sunday gathering</p><h3>Divine Liturgy · 9:30 am</h3><p>See the full calendar for this week’s services and any schedule changes.</p></div><a class="text-link" href="/calendar/">See service times <Icon name="arrow" size={17}/></a></div>
+      <ul class="upcoming-list" hidden aria-label="Next services and parish gatherings"></ul>
+    </div>
+  </div>
+</section>
+<script>
+  const root = document.querySelector('[data-upcoming]');
+  const list = root?.querySelector<HTMLUListElement>('.upcoming-list');
+  const fallback = root?.querySelector<HTMLElement>('.schedule-fallback');
+  const status = document.querySelector('#week-status');
+  if (root && list && fallback && status) {
+    const format = (date:Date, options:Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('en-US', {timeZone:'America/New_York',...options}).format(date);
+    fetch('/.netlify/functions/upcoming', {signal:AbortSignal.timeout(10000)})
+      .then(async response => {if(!response.ok) throw new Error('Calendar unavailable'); return response.json();})
+      .then(data => {
+        if(!Array.isArray(data.events) || !data.events.length) {
+          status.textContent='No upcoming gatherings are listed for the next seven days. Check the full calendar.';
+          return;
+        }
+        const items = data.events.slice(0,3).map((event:{title:string;start:string;end:string}) => {
+          const start = new Date(event.start);
+          if(!Number.isFinite(start.getTime()) || typeof event.title !== 'string') throw new Error('Invalid event');
+          const item = document.createElement('li');
+          const stamp = document.createElement('time'); stamp.dateTime=event.start; stamp.className='event-date';
+          const day=document.createElement('span'); day.textContent=format(start,{weekday:'short'});
+          const number=document.createElement('strong'); number.textContent=format(start,{day:'numeric'});
+          const month=document.createElement('span'); month.textContent=format(start,{month:'short'});
+          stamp.append(day,number,month);
+          const body=document.createElement('div');
+          const clock=document.createElement('p');clock.className='event-time'; clock.textContent=format(start,{hour:'numeric',minute:'2-digit'});
+          const title=document.createElement('h3'); title.textContent=event.title;
+          body.append(clock,title); item.append(stamp,body);return item;
+        });
+        list.replaceChildren(...items);fallback.hidden=true;list.hidden=false;
+        status.textContent='Next services and gatherings · All times Eastern';
+      })
+      .catch(() => {status.textContent='For this week’s services and schedule changes, please check the full calendar.';});
+  }
+</script>

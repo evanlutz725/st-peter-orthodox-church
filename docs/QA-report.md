@@ -49,3 +49,20 @@ Tested the built static site through the Codex Chromium browser against the loca
 - Visually verified the deployed homepage at 1440 px and 390 px. The live mobile menu navigated to Resources and the Prayer filter returned three results, with no document overflow.
 - Saved live screenshots: `artifacts/polished-homepage-desktop.png` and `artifacts/polished-homepage-mobile.png`; HTTP evidence: `artifacts/production-qa.json`. These local artifacts are intentionally ignored by Git.
 - Temporary browser emulation was cleared and the production homepage left open.
+
+## Parish identity and visitor refinement
+
+October 25, 2026, following comparison with five Orthodox parish websites.
+
+- Rebuilt the homepage around a direct Sunday invitation, parish-archive worship photography, live upcoming gatherings, practical first-visit guidance, Father Hans, concrete parish ministries, a featured homily, and the latest newsletter.
+- Added the server-side upcoming-events endpoint using the existing public calendar. Its only output is the next three timed gatherings within seven days; all times are displayed in America/New_York. No API keys or client calendar library are required. Successful responses cache for up to five minutes; a failed request is not cached.
+- Five calendar tests passed: daylight-saving transitions, exclusions and cancellations, moved/cancelled recurrence overrides, ongoing/past/distant events, and empty/invalid upstream responses.
+- Built all 26 pages. Static integrity checks passed for 818 local paths/assets/fragments and 78 image instances. Homepage inline application JavaScript is 2,377 bytes; no separate client JavaScript bundle is emitted. Production dependency audit found no known vulnerabilities.
+- Tested home and visit at 320, 360, 390, 430, 700, 701, 768, 960, 961, 1024, 1440, and 1920 px: 24 checks with no document overflow, clipped checked text/controls, failed loaded images, or duplicate/missing h1.
+- Tested all 26 pages at 320 and 1440 px: 52 further checks with no document overflow, duplicate/missing h1, or failed loaded images.
+- Visually inspected the desktop hero and mobile hero, dated service list, visitor steps, pastor, parish life, and homily sections. Verified the service-times anchor, visit CTA, mobile menu expanded state, Escape dismissal/focus return, and children FAQ.
+- Played the new homepage audio player; playback advanced beyond 11 seconds with readyState 4 and no media error. Navigation stopped playback.
+- Simulated calendar HTTP failure and a successful empty calendar using the ignored local QA preview server. Both left the regular Sunday schedule and full-calendar link visible, with the appropriate accessible status message.
+- Measured 157 visible text samples across homepage and visit against their computed solid backgrounds. No sampled failures; minimum ratio 4.55:1. Third-party/native controls and photographic pixels are outside this measurement.
+- Local browser preview served built files and the actual function handler. It does not establish Netlify bundling or production function execution; those are verified separately after publishing. Responsive testing uses Chromium viewport emulation, not physical devices.
+- Raw browser measurements: ignored `artifacts/parish-refinement-qa.json`. Content provenance: `docs/parish-content-sources.md`.

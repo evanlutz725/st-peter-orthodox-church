@@ -8,10 +8,12 @@
     "build": "astro build",
     "preview": "astro preview --host 0.0.0.0",
     "check:links": "node scripts/check-links.mjs",
-    "refresh:content": "node scripts/import-content.mjs && node scripts/import-homilies.mjs"
+    "refresh:content": "node scripts/import-content.mjs && node scripts/import-homilies.mjs",
+    "test:calendar": "node --test scripts/upcoming.test.mjs"
   },
   "dependencies": {
-    "astro": "^7.4.2"
+    "astro": "^7.4.2",
+    "node-ical": "^0.27.3"
   },
   "devDependencies": {
     "cheerio": "1.2.0",

@@ -54,6 +54,11 @@ async function clean(html) {
   }
   $('p,ul,li').each((_,el)=>{ if (!$(el).text().trim() && !$(el).find('img,a,br').length) $(el).remove(); });
   normalizeArticleHeadings($);
+  $('h2').each((_,el) => {
+    const heading = $(el).text();
+    if (/Catechumen and Enquirers Class starts/.test(heading)) $(el).attr('id','parish-learning');
+    if (/When You Give to the Good Samaritan Mercy Fund/.test(heading)) $(el).attr('id','parish-mercy');
+  });
   labelArticleImageLinks($);
   return $.html().replace(/<!--[^]*?-->/g,'');
 }

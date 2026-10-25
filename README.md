@@ -9,19 +9,20 @@ npm ci
 npm run dev
 npm run build
 npm run check:links
+npm run test:calendar
 ```
 
 Astro 7 requires Node 22.23.4 or newer. A compatible Node runtime is included as a development dependency; npm scripts resolve that local binary. Netlify uses the latest Node 22 release.
 
 ## Content and features
 
-- Static HTML pages with a small amount of JavaScript for the mobile menu and resource search/filter.
+- Static HTML pages with a small amount of JavaScript for the mobile menu, resource search/filter, and homepage upcoming-events list.
 - Clear service time, directions, first-visit guidance, and call/text contact actions.
 - Eight migrated parish and prayer articles, plus six recent newsletters imported from the public WordPress REST API.
 - Six recent podcast episodes imported from the parish's public RSS feed, with native audio controls and Apple Podcasts / Amazon Music links.
-- The parish's existing public Google Calendar, with an ICS subscription and direct-link fallback.
+- The parish's existing public Google Calendar in a weekly grid, with an ICS subscription and direct-link fallback. The homepage shows the next three timed gatherings in the next seven days through a small Netlify Function; responses are cached for up to five minutes and a regular-Sunday fallback remains available.
 - Self-hosted, licensed Latin font subsets and responsive WebP image sources keep the initial page lightweight.
-- Local optimized WebP images sourced from the existing parish website. Interior imagery is retained from that website and is not independently identified as a photograph of this parish.
+- Local optimized WebP images sourced from the existing parish website. The homepage and visit page use parish-archive worship photography; Father Hans's photograph is also from the original parish site. Remaining generic interior imagery on other pages is not independently identified as this parish. See `docs/parish-content-sources.md`.
 - Accessible navigation, skip link, keyboard focus styles, reduced-motion support, responsive layouts, metadata, and old-path redirects.
 
 This is a content snapshot, not a live WordPress integration. Refresh imported articles, newsletters, and podcast episodes with:
@@ -38,7 +39,7 @@ Common parish details and resource cards: `src/data/site.ts`. Layout and navigat
 
 ## Deployment
 
-Netlify project: `st-peter-orthodox-fort-myers` (ID `503f2a04-4bbe-444e-827b-16c171a0ab01`). Build command: `npm run build && npm run check:links`; publish directory: `dist`.
+Netlify project: `st-peter-orthodox-fort-myers` (ID `503f2a04-4bbe-444e-827b-16c171a0ab01`). Build command: `npm run test:calendar && npm run build && npm run check:links`; publish directory: `dist`.
 
 `.netlify/` is ignored because it contains checkout-local deployment state. No credentials belong in the repository.
 

@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build && npm run check:links"
+  command = "npm run test:calendar && npm run build && npm run check:links"
   publish = "dist"
 
 [build.environment]

@@ -187,6 +187,11 @@ footer .brand-mark { color: var(--light-gold); }
 .info-panel p { font-size: 15px; color: var(--muted); }
 .info-panel .button { margin-top: 10px; }
 .faqs { margin-top: 58px; max-width: 850px; }
+.arrival-guide { border-block: 1px solid var(--line); padding-block: 32px; margin-top: 42px; }
+.arrival-guide .eyebrow { margin-bottom: 12px; }
+.arrival-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.arrival-grid h3 { font-size: 28px; margin-bottom: 14px; }
+.arrival-grid p { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
 .faqs > h2 { margin-bottom: 28px; }
 .faqs details { border-top: 1px solid var(--line); padding: 22px 0; }
 .faqs details:last-child { border-bottom: 1px solid var(--line); }
@@ -350,6 +355,7 @@ footer .brand-mark { color: var(--light-gold); }
   .intro-two > img { height: 300px; }
   .info-grid { margin-top: 36px; }
   .faqs { margin-top: 36px; }
+  .arrival-grid { grid-template-columns: minmax(0,1fr); gap: 22px; }
   .faqs summary { font-size: 16px; }
   .calendar-viewport .calendar-frame { height: 680px; }
   .resource-tools { gap: 20px; }
