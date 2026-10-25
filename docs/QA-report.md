@@ -43,4 +43,9 @@ Tested the built static site through the Codex Chromium browser against the loca
 - Google weekly calendar rendered its seven-column date grid and service events. On a 390 px viewport, its 900 px inner frame scrolled horizontally to 415 px while the document remained within the viewport. Direct Google Calendar and ICS fallbacks remain available.
 - Measured 184 text styles across home, visit, resources, and homilies against their solid backgrounds. All passed the applicable 4.5:1 normal / 3:1 large-text thresholds after darkening gold labels; minimum normal-text ratio was 4.55:1. This sample excludes photo captions and third-party iframe content and is not a comprehensive WCAG conformance certification.
 - Raw geometry and contrast measurements are saved in ignored local artifact `artifacts/responsive-qa.json`.
-- Production deployment verification is recorded below after release.
+- Published application source commit: `a11db40c35910d7c44bd82d6c7c63423275adffd`.
+- Netlify production deploy `6ade62c6018b3208a63f4949` reached ready and published October 25, 2026 at 20:13:11 UTC. Build and static QA gate passed; Netlify processed all 11 redirects and both header rules without errors. Its scan reported no secret matches.
+- Live origin: https://st-peter-orthodox-fort-myers.netlify.app/ . HTTP checks across all 26 built routes found the new navigation and self-hosted font references, with no old Google Fonts imports. New font and responsive image URLs returned 200 with correct content types. An unknown route returned HTTP 404. Security and intentional noindex headers were present.
+- Visually verified the deployed homepage at 1440 px and 390 px. The live mobile menu navigated to Resources and the Prayer filter returned three results, with no document overflow.
+- Saved live screenshots: `artifacts/polished-homepage-desktop.png` and `artifacts/polished-homepage-mobile.png`; HTTP evidence: `artifacts/production-qa.json`. These local artifacts are intentionally ignored by Git.
+- Temporary browser emulation was cleared and the production homepage left open.
