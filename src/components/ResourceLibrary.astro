@@ -4,18 +4,6 @@ import {resources} from '../data/site';
 ---
 <section id="prayers" aria-labelledby="prayers-title">
   <p class="eyebrow">Pray and learn</p><h2 id="prayers-title">Prayers and resources</h2>
-  <div class="resource-tools"><label class="search-box"><span class="sr-only">Search resources</span><Icon name="search"/><input type="search" id="resource-search" placeholder="Search prayers, faith, homilies…" aria-label="Search resources"/></label></div>
   <p id="resource-count" class="eyebrow" aria-live="polite">{resources.length} resources</p>
   <div class="resource-grid">{resources.map(r=><a class="resource-card" href={r.href} data-search={`${r.title} ${r.description}`.toLowerCase()} target={r.href.startsWith('https')?'_blank':undefined} rel={r.href.startsWith('https')?'noopener':undefined}><h3>{r.title}</h3><p>{r.description}</p><Icon name={r.href.startsWith('https')?'northeast':'arrow'} size={20}/></a>)}</div>
-  <p id="empty-resources" class="empty-state" hidden>No resources match your search. Try another word.</p>
 </section>
-<script>
-  const search=document.querySelector<HTMLInputElement>('#resource-search');
-  const cards=Array.from(document.querySelectorAll<HTMLElement>('.resource-card'));
-  search?.addEventListener('input',()=>{
-    const query=search.value.toLowerCase().trim();let total=0;
-    cards.forEach(card=>{const show=(card.dataset.search||'').includes(query);card.hidden=!show;if(show)total++;});
-    const count=document.querySelector('#resource-count');if(count)count.textContent=`${total} ${total===1?'resource':'resources'}`;
-    const empty=document.querySelector<HTMLElement>('#empty-resources');if(empty)empty.hidden=total!==0;
-  });
-</script>
