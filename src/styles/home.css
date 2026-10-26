@@ -123,25 +123,14 @@
   .hero-service span { margin-left: 9px; }
 }
 
-/* The original sacred icon leads; parish photographs remain part of the welcome. */
-.home-hero .hero-inner { grid-template-columns: 1.1fr .9fr; }
-.home-hero .patron-icon { width: 100%; max-width: 420px; justify-self: center; margin: 0; height: auto; overflow: visible; background: none; }
-.home-hero .patron-icon:after { display: none; }
-.patron-icon > img { width: 100%; height: auto; object-fit: contain; }
-.patron-icon figcaption { color: #e0d4bd; font-size: 16px; text-align: center; line-height: 1.6; padding-top: 16px; }
+/* Original parish photography accompanies the homepage welcome. */
+.home-hero .hero-inner { grid-template-columns: 1fr 1fr; }
 .parish-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; padding-bottom: 0; }
 .parish-gallery figure { margin: 0; }
 .parish-gallery img { width: 100%; height: 320px; object-fit: cover; }
 .parish-gallery figcaption { font-size: 16px; color: var(--muted); line-height: 1.6; padding-top: 16px; }
 @media(max-width:700px) {
   .home-hero .hero-inner { grid-template-columns: minmax(0,1fr); }
-  .home-hero .patron-icon { order: -1; max-width: 210px; }
-  .patron-icon figcaption { font-size: 14px; padding-top: 10px; }
-  .home-hero .hero-copy { text-align: center; }
-  .home-hero .hero-description { margin-inline: auto; }
-  .home-hero h1 em { display: inline; }
-  .home-hero .hero-actions { justify-content: center; }
-  .hero-address { justify-content: center; }
   .parish-gallery { grid-template-columns: minmax(0,1fr); gap: 28px; }
   .parish-gallery img { height: auto; max-height: 340px; object-fit: contain; }
 }

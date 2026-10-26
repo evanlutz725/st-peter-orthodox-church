@@ -57,7 +57,7 @@ p { margin-bottom: 22px; }
 .brand { display: inline-flex; align-items: center; gap: 16px; flex-shrink: 0; }
 .brand-mark { color: var(--gold); display: flex; align-items: center; }
 .brand-mark svg { width: 32px; height: 43px; }
-.brand-mark img { width: 58px; height: 58px; object-fit: contain; }
+.brand-mark img { width: 58px; height: 58px; object-fit: contain; border-radius: 50%; }
 .brand-title { font-family: var(--serif); font-size: 36px; font-weight: 600; line-height: 1; display: block; letter-spacing: -.035em; }
 .brand-subtitle { display: block; font-size: 11px; font-weight: 600; letter-spacing: .17em; line-height: 1.7; margin-top: 7px; }
 .site-nav { display: flex; align-items: center; gap: 18px; font-size: 16px; font-weight: 600; }
@@ -209,10 +209,6 @@ footer .brand-mark { color: var(--light-gold); }
 .search-box { position: relative; flex: 1; max-width: 430px; min-width: 260px; }
 .search-box svg { position: absolute; top: 17px; left: 16px; color: var(--muted); }
 .search-box input { width: 100%; height: 54px; border: 1px solid #a8b3a5; background: var(--white); padding: 13px 16px 13px 48px; color: var(--ink); border-radius: 2px; }
-.filters { display: flex; gap: 8px; flex-wrap: wrap; }
-.filter { border: 1px solid var(--line); border-radius: 2px; background: transparent; padding: 10px 16px; min-height: 44px; color: var(--ink); cursor: pointer; font-size: 16px; }
-.filter[aria-pressed=true] { background: var(--olive); border-color: var(--olive); color: white; }
-.filter:hover { border-color: var(--olive); }
 .resource-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
 .resource-card { border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; align-items: flex-start; min-height: 270px; }
 .resource-card:hover { border-color: #8b9d87; background: #f0f1e9; }
@@ -357,7 +353,6 @@ footer .brand-mark { color: var(--light-gold); }
   .faqs summary { font-size: 16px; }
   .resource-tools { gap: 20px; }
   .search-box { max-width: none; min-width: 100%; }
-  .filter { padding-inline: 14px; }
   .resource-grid { grid-template-columns: minmax(0,1fr); gap: 18px; }
   .resource-card { min-height: 240px; padding: 25px; }
   .sermon-list { grid-template-columns: minmax(0,1fr); gap: 34px; }
@@ -392,7 +387,7 @@ main summary { font-size: 18px; }
 .hub-photo figcaption { color: var(--muted); font-size: 16px; margin-top: 16px; line-height: 1.6; }
 .patron-section { display: grid; grid-template-columns: 280px minmax(0,1fr); gap: 64px; align-items: center; }
 .patron-section figure { margin: 0; }
-.patron-section img { width: 100%; height: auto; }
+.patron-section img { width: 100%; height: auto; border-radius: 50%; }
 .parish-detail { border-block: 1px solid var(--line); padding: 20px 0; margin-top: 24px; }
 .parish-detail summary { cursor: pointer; font-weight: 600; }
 .parish-detail > div { margin-top: 22px; }

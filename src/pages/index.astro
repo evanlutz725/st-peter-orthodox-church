@@ -10,7 +10,7 @@ const date = (s:string)=>new Date(s+'T12:00:00').toLocaleDateString('en-US',{mon
 const homily = podcast.episodes[0];
 const parishNews = news.find(post => post.html.includes('id="parish-learning"') && post.html.includes('id="parish-mercy"'));
 ---
-<Layout image="/assets/saint-peter-icon.webp" description="Visit St. Peter the Apostle Antiochian Orthodox Church in Fort Myers. Sunday Divine Liturgy at 9:30 am. Meet Father Hans, find service times, and plan your first visit.">
+<Layout image="/assets/parish-worship.webp" description="Visit St. Peter the Apostle Antiochian Orthodox Church in Fort Myers. Sunday Divine Liturgy at 9:30 am. Meet Father Hans, find service times, and plan your first visit.">
   <section class="hero home-hero" aria-labelledby="home-title">
     <div class="wrap hero-inner">
       <div class="hero-copy">
@@ -21,7 +21,7 @@ const parishNews = news.find(post => post.html.includes('id="parish-learning"') 
         <div class="hero-actions"><a class="button" href="/visit/">Plan your visit <Icon name="arrow" size={18}/></a><a class="text-link" href="#this-week">Service times <Icon name="arrow" size={17}/></a></div>
         <a class="hero-address" href={site.directions} target="_blank" rel="noopener"><Icon name="pin" size={17}/><span>{site.address} · Fort Myers</span><Icon name="northeast" size={14}/></a>
       </div>
-      <figure class="hero-image patron-icon"><img src="/assets/saint-peter-icon.webp" width="512" height="512" alt="Icon of Saint Peter the Apostle, patron of our parish, on a blue and gold background" fetchpriority="high"/><figcaption>Saint Peter the Apostle · Our patron saint</figcaption></figure>
+      <figure class="hero-image parish-photo"><img src="/assets/parish-worship.webp" width="596" height="336" alt="The St. Peter parish gathered for Orthodox worship" fetchpriority="high"/><figcaption>From our parish archive: worship at St. Peter.</figcaption></figure>
     </div>
   </section>
   <UpcomingEvents/>

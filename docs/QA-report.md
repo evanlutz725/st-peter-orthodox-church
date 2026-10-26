@@ -93,3 +93,10 @@ October 25, 2026. This revision supersedes the embedded/calendar-scrolling behav
 - The production weekly endpoint returned seven dates and eight entries for October 25–31. The November 1 response preserved 9:30 am local Liturgy after daylight saving (14:30 UTC); an invalid February 30 request returned HTTP 400 and no-store. The homepage upcoming endpoint returned three gatherings.
 - In the published browser, verified 18 px body text, Lora headings at weight 600, all primary destinations in the header, the full 512 px source icon, and no desktop overflow. At 390 px, the live calendar rendered seven day cards, no iframe, and no document/calendar overflow; Next week displayed November 1–7 with the correct local service times.
 - Saved published screenshots: ignored `artifacts/readable-saint-peter-home-desktop.png` and `artifacts/readable-calendar-mobile.png`. HTTP evidence: `artifacts/readability-production-qa.json`.
+
+## Homepage and resource simplification
+
+- Restored the parish worship photograph and left-aligned homepage welcome, removing the large hero icon. Saint Peter icons in the shared identity and parish page now use circular frames; the source image is unchanged.
+- Removed resource category tabs and category labels. Search, result counts, empty state, and resource links remain.
+- Build and static checks passed across 23 pages, 829 local links/assets/fragments, and 128 image instances.
+- Browser-checked home, parish, and faith pages at 320, 390, 768, and 1440 px: 12 checks with no document overflow. Verified circular header icons, restored hero image, and removal of resource categories. Searching creed returned one result; an unmatched query showed the empty state.
