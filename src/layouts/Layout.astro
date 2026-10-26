@@ -1,10 +1,11 @@
 ---
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
-import { site } from '../data/site';
-const {title,description='An ancient faith. A welcoming community. Visit St. Peter the Apostle Antiochian Orthodox Church in Fort Myers, serving Southwest Florida.',image='/assets/church.webp'} = Astro.props;
+import { site, primaryNavigation } from '../data/site';
+const {title,description='An ancient faith. A welcoming community. Visit St. Peter the Apostle Antiochian Orthodox Church in Fort Myers, serving Southwest Florida.',image='/assets/saint-peter-icon.webp'} = Astro.props;
 const path = Astro.url.pathname;
-const nav = [['Our parish','/about/'],['Orthodoxy','/orthodoxy/'],['Calendar','/calendar/'],['Resources','/resources/'],['News','/news/']];
+const nav = primaryNavigation;
+const faithPage = ['/what-we-are/','/sacraments/','/governing/','/the-creed/','/the-lords-prayer/','/akathists/'].includes(path);
 ---
 <!doctype html>
 <html lang="en">
@@ -13,8 +14,8 @@ const nav = [['Our parish','/about/'],['Orthodoxy','/orthodoxy/'],['Calendar','/
     <title>{title ? `${title} | ${site.name}` : `${site.name} | Come and see`}</title>
     <meta name="description" content={description}/><meta name="theme-color" content="#183a32"/>
     <meta name="robots" content="noindex, nofollow"/>
-    <link rel="icon" type="image/png" href="/assets/favicon.png"/>
-    <link rel="preload" href="/assets/fonts/cormorant-garamond-latin-normal.woff2" as="font" type="font/woff2" crossorigin/>
+    <link rel="icon" type="image/png" href="/assets/saint-peter-favicon.png"/>
+    <link rel="preload" href="/assets/fonts/lora-latin-normal.woff2" as="font" type="font/woff2" crossorigin/>
     <link rel="preload" href="/assets/fonts/dm-sans-latin-normal.woff2" as="font" type="font/woff2" crossorigin/>
     <link rel="canonical" href={new URL(path, Astro.site)}/>
     <meta property="og:title" content={title || site.name}/><meta property="og:description" content={description}/>
@@ -27,14 +28,14 @@ const nav = [['Our parish','/about/'],['Orthodoxy','/orthodoxy/'],['Calendar','/
     <div class="topbar"><div class="wrap"><span>Fort Myers, Florida · All are welcome</span><a href="/calendar/">Sunday Divine Liturgy · 9:30 am <Icon name="arrow" size={14}/></a></div></div>
     <header class="site-header">
       <div class="wrap header-inner">
-        <a href="/" class="brand" aria-label="St. Peter Orthodox Church home"><span class="brand-mark"><Icon name="cross" size={38}/></span><span><span class="brand-title">St. Peter</span><span class="brand-subtitle">ORTHODOX CHURCH</span></span></a>
+        <a href="/" class="brand" aria-label="St. Peter Orthodox Church home"><span class="brand-mark"><img src="/assets/saint-peter-icon.webp" width="512" height="512" alt=""/></span><span><span class="brand-title">St. Peter</span><span class="brand-subtitle">ORTHODOX CHURCH</span></span></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" hidden><span class="menu-label">Menu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-        <nav class="site-nav" id="navigation" aria-label="Main navigation">{nav.map(([label,href])=><a href={href} aria-current={path.startsWith(href)?'page':undefined}>{label}</a>)}<a class="button nav-visit" href="/visit/" aria-current={path==='/visit/'?'page':undefined}>Plan your visit <Icon name="arrow" size={17}/></a></nav>
+        <nav class="site-nav" id="navigation" aria-label="Main navigation">{nav.map(([label,href])=><a href={href} aria-current={path.startsWith(href)?'page':faithPage&&href==='/orthodoxy/'?'location':undefined}>{label}</a>)}<a class="button nav-visit" href="/visit/" aria-current={path==='/visit/'?'page':undefined}>Plan your visit <Icon name="arrow" size={17}/></a></nav>
       </div>
     </header>
     <main id="main" tabindex="-1"><slot/></main>
     <section class="invitation"><div class="wrap invitation-inner"><div><p class="eyebrow">There is a place for you here</p><h2>Come and see.</h2><p>A lifelong Orthodox Christian, a curious visitor, or somewhere in between.<br class="desktop"/> We would love to welcome you.</p></div><a class="button button-light" href="/visit/">Join us this Sunday <Icon name="arrow"/></a></div></section>
-    <footer><div class="wrap footer-grid"><div><a href="/" class="brand footer-brand"><span class="brand-mark"><Icon name="cross" size={38}/></span><span><span class="brand-title">St. Peter</span><span class="brand-subtitle">ORTHODOX CHURCH</span></span></a><p>Ancient faith. Living community.<br/>Serving Fort Myers, Estero, Bonita Springs,<br/>Naples, and all of Southwest Florida.</p></div><div><h3>Come worship</h3><p>Divine Liturgy · Sundays at 9:30 am</p><a href="/calendar/">Full service calendar <Icon name="arrow" size={16}/></a><p>{site.address}<br/>{site.city}</p><a href={site.directions} target="_blank" rel="noopener">Get directions <Icon name="northeast" size={16}/></a></div><div><h3>Stay connected</h3><a href="/news/">Parish news</a><a href="/homilies/">Homilies</a><a href="/contact/">Contact the parish</a><a href="tel:+12392217537">{site.phone}</a></div></div><div class="wrap footer-bottom"><span>© {new Date().getFullYear()} St. Peter Orthodox Church</span><div class="footer-legal"><a href="/privacy-policy/">Privacy policy</a><a href="/terms-and-conditions/">Terms &amp; conditions</a><a href="https://www.antiochian.org/" target="_blank" rel="noopener">Antiochian Orthodox Christian Archdiocese <Icon name="northeast" size={13}/></a></div></div></footer>
+    <footer><div class="wrap footer-grid"><div><a href="/" class="brand footer-brand"><span class="brand-mark"><img src="/assets/saint-peter-icon.webp" width="512" height="512" alt=""/></span><span><span class="brand-title">St. Peter</span><span class="brand-subtitle">ORTHODOX CHURCH</span></span></a><p>Ancient faith. Living community.<br/>Serving Fort Myers, Estero, Bonita Springs,<br/>Naples, and all of Southwest Florida.</p></div><div><h3>Come worship</h3><p>Divine Liturgy · Sundays at 9:30 am</p><a href="/calendar/">Full service calendar <Icon name="arrow" size={16}/></a><p>{site.address}<br/>{site.city}</p><a href={site.directions} target="_blank" rel="noopener">Get directions <Icon name="northeast" size={16}/></a></div><div><h3>Stay connected</h3><a href="/news/">Parish news</a><a href="/homilies/">Homilies</a><a href="/contact/">Contact the parish</a><a href="tel:+12392217537">{site.phone}</a></div></div><div class="wrap footer-bottom"><span>© {new Date().getFullYear()} St. Peter Orthodox Church</span><div class="footer-legal"><a href="/privacy-policy/">Privacy policy</a><a href="/terms-and-conditions/">Terms &amp; conditions</a><a href="https://www.antiochian.org/" target="_blank" rel="noopener">Antiochian Orthodox Christian Archdiocese <Icon name="northeast" size={13}/></a></div></div></footer>
     <script>
       const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
       const nav = document.querySelector<HTMLElement>('#navigation');
@@ -52,7 +53,7 @@ const nav = [['Our parish','/about/'],['Orthodoxy','/orthodoxy/'],['Calendar','/
         document.addEventListener('keydown',e=>{if(e.key==='Escape' && toggle.getAttribute('aria-expanded')==='true'){setMenu(false);toggle.focus();}});
         document.addEventListener('click',e=>{if(e.target instanceof Node && !header?.contains(e.target)) setMenu(false);});
         header?.addEventListener('focusout',e=>{if(e instanceof FocusEvent && e.relatedTarget instanceof Node && !header?.contains(e.relatedTarget)) setMenu(false);});
-        matchMedia('(min-width: 961px)').addEventListener('change',()=>setMenu(false));
+        matchMedia('(min-width: 1201px)').addEventListener('change',()=>setMenu(false));
       }
     </script>
   </body>

@@ -4,8 +4,12 @@
 /worship/ /orthodoxy/ 301
 /category/news/ /news/ 301
 /newsletter/ /news/ 301
-/glossary/ /resources/ 301
-/podcasts/ /resources/ 301
-/orthodox-arts/ /resources/ 301
-/video-and-radio/ /resources/ 301
-/blogs-and-books/ /resources/ 301
+/glossary/ /orthodoxy/#prayers 301
+/podcasts/ /orthodoxy/#prayers 301
+/orthodox-arts/ /orthodoxy/#prayers 301
+/video-and-radio/ /orthodoxy/#prayers 301
+/blogs-and-books/ /orthodoxy/#prayers 301
+
+/resources/ /orthodoxy/#prayers 301
+/our-story/ /about/#our-story 301
+/our-clergy/ /about/#our-clergy 301

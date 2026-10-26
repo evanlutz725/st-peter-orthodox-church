@@ -17,3 +17,9 @@ https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/OFL.tx
 
 DM-Sans-OFL.txt
 https://raw.githubusercontent.com/google/fonts/main/ofl/dmsans/OFL.txt
+
+Lora variable Latin subsets, weights 500-700. SIL Open Font License.
+lora-latin-italic.woff2
+https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LIftL.woff2
+lora-latin-normal.woff2
+https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2

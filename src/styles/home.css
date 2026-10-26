@@ -1,33 +1,33 @@
 /* Parish photography and useful weekly information give the homepage its identity. */
 .home-hero .hero-inner { gap: 64px; padding-block: 64px; }
-.home-hero h1 { font-size: clamp(72px,7vw,104px); line-height: .98; margin-bottom: 26px; }
+.home-hero h1 { font-size: clamp(52px,5vw,72px); line-height: 1.15; margin-bottom: 26px; }
 .home-hero h1 em { display: block; }
 .home-hero .hero-description { max-width: 420px; }
-.hero-service { font-size: 14px; color: #f4f0e6; margin-bottom: 22px; }
+.hero-service { font-size: 16px; color: #f4f0e6; margin-bottom: 22px; }
 .hero-service span { margin-left: 14px; font-weight: 600; color: var(--light-gold); }
-.hero-address { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; color: #d1dbd0; min-height: 44px; margin-top: 25px; }
+.hero-address { display: inline-flex; align-items: center; gap: 9px; font-size: 16px; color: #d1dbd0; min-height: 44px; margin-top: 25px; }
 .hero-address:hover { text-decoration: underline; text-underline-offset: 4px; }
 .home-hero .parish-photo { height: auto; overflow: visible; background: transparent; }
 .parish-photo > img { aspect-ratio: 596 / 420; object-fit: cover; object-position: 50% 50%; }
 .home-hero .parish-photo:after { display: none; }
-.parish-photo figcaption { position: static; font-size: 11px; color: #cbd7cd; line-height: 1.6; padding-top: 14px; }
+.parish-photo figcaption { position: static; font-size: 16px; color: #cbd7cd; line-height: 1.6; padding-top: 14px; }
 .upcoming-section { border-bottom: 1px solid var(--line); background: #f1eee6; scroll-margin-top: 24px; }
 .upcoming-section .section { padding-block: 48px; }
 .upcoming-section h2 { font-size: clamp(34px,3.5vw,44px); }
 .upcoming-section .section-heading { margin-bottom: 18px; }
-.week-status { font-size: 12px; color: var(--muted); margin-bottom: 26px; }
+.week-status { font-size: 16px; color: var(--muted); margin-bottom: 26px; }
 .week-content { min-height: 132px; }
 .upcoming-list { padding: 0; margin: 0; list-style: none; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
 .upcoming-list li { display: flex; align-items: flex-start; gap: 22px; padding: 14px 24px 14px 0; min-width: 0; }
 .upcoming-list li + li { padding-left: 28px; border-left: 1px solid #d1d1c4; }
-.event-date { display: flex; flex-direction: column; text-align: center; min-width: 40px; color: var(--gold); font-size: 10px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }
-.event-date strong { font-family: var(--serif); font-size: 42px; line-height: 1.1; font-weight: 500; letter-spacing: -.03em; }
-.event-time { color: var(--muted); font-size: 12px; line-height: 1.5; margin-bottom: 9px; }
+.event-date { display: flex; flex-direction: column; text-align: center; min-width: 40px; color: var(--gold); font-size: 16px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }
+.event-date strong { font-family: var(--serif); font-size: 42px; line-height: 1.1; font-weight: 600; letter-spacing: -.03em; }
+.event-time { color: var(--muted); font-size: 16px; line-height: 1.5; margin-bottom: 9px; }
 .upcoming-list h3 { font-size: 24px; line-height: 1.2; margin: 0; overflow-wrap: anywhere; }
 .schedule-fallback { display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--line); padding-top: 22px; }
 .schedule-fallback .eyebrow { margin-bottom: 8px; }
 .schedule-fallback h3 { font-size: 28px; margin-bottom: 8px; }
-.schedule-fallback p:last-child { color: var(--muted); font-size: 14px; margin: 0; }
+.schedule-fallback p:last-child { color: var(--muted); font-size: 16px; margin: 0; }
 .schedule-fallback > a { flex-shrink: 0; }
 .first-visit { display: grid; grid-template-columns: .95fr 1.05fr; gap: 100px; align-items: center; }
 .first-visit > div > p:not(.eyebrow) { color: var(--muted); max-width: 420px; }
@@ -37,19 +37,19 @@
 .visit-steps li:last-child { border-bottom: 0; padding-bottom: 0; }
 .step-number { color: var(--gold); font-family: var(--serif); font-size: 25px; line-height: 1.2; }
 .visit-steps h3 { font-size: 27px; margin-bottom: 10px; }
-.visit-steps p { color: var(--muted); font-size: 14px; line-height: 1.8; margin: 0; }
+.visit-steps p { color: var(--muted); font-size: 16px; line-height: 1.8; margin: 0; }
 .pastor-section { background: #eae8dd; }
 .pastor-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 90px; }
 .pastor-photo { margin: 0; }
 .pastor-photo img { width: 100%; height: auto; }
-.pastor-photo figcaption { color: var(--muted); font-size: 11px; margin-top: 14px; }
+.pastor-photo figcaption { color: var(--muted); font-size: 16px; margin-top: 14px; }
 .pastor-copy > p:not(.eyebrow) { color: var(--muted); }
 .pastor-actions { display: flex; gap: 8px 26px; flex-wrap: wrap; }
 .life-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 42px; }
 .life-story { display: flex; flex-direction: column; align-items: flex-start; padding-top: 26px; border-top: 1px solid #aeb8ab; }
-.life-story .eyebrow { margin-bottom: 16px; font-size: 10px; }
+.life-story .eyebrow { margin-bottom: 16px; font-size: 13px; }
 .life-story h3 { font-size: 31px; line-height: 1.15; margin-bottom: 18px; }
-.life-story > p:not(.eyebrow) { font-size: 14px; color: var(--muted); }
+.life-story > p:not(.eyebrow) { font-size: 13px; color: var(--muted); }
 .life-story .text-link { margin-top: auto; }
 .homily-feature { background: #193c33; color: #faf7ef; }
 .homily-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: center; }
@@ -63,7 +63,7 @@
 .home-news h2 { margin-bottom: 0; }
 .home-news h3 { font-size: 28px; margin: 12px 0; }
 .home-news h3 a:hover { text-decoration: underline; text-underline-offset: 5px; }
-.home-news article p { font-size: 14px; color: var(--muted); margin: 0; }
+.home-news article p { font-size: 16px; color: var(--muted); margin: 0; }
 @media(max-width:1100px) {
   .home-hero .hero-inner { gap: 40px; padding-block: 48px; }
   .first-visit { gap: 64px; }
@@ -72,7 +72,7 @@
   .home-news { gap: 28px; }
 }
 @media(max-width:960px) {
-  .home-hero h1 { font-size: 72px; }
+  .home-hero h1 { font-size: 54px; }
   .upcoming-list li { gap: 14px; padding-right: 18px; }
   .upcoming-list li + li { padding-left: 18px; }
   .upcoming-list h3 { font-size: 23px; }
@@ -87,16 +87,16 @@
 }
 @media(max-width:700px) {
   .home-hero .hero-inner { padding-block: 36px 26px; gap: 24px; }
-  .home-hero h1 { font-size: clamp(64px,17vw,96px); margin-bottom: 20px; }
+  .home-hero h1 { font-size: clamp(42px,11vw,60px); margin-bottom: 20px; }
   .home-hero .hero-description { max-width: 480px; margin-bottom: 20px; }
-  .hero-service { font-size: 13px; margin-bottom: 20px; }
-  .hero-address { margin-top: 14px; font-size: 11px; }
+  .hero-service { font-size: 16px; margin-bottom: 20px; }
+  .hero-address { margin-top: 14px; font-size: 16px; }
   .parish-photo > img { aspect-ratio: 596/336; }
-  .parish-photo figcaption { font-size: 10px; padding-top: 10px; }
+  .parish-photo figcaption { font-size: 16px; padding-top: 10px; }
   .upcoming-section .section { padding-block: 36px; }
   .upcoming-section .section-heading { gap: 10px; }
   .upcoming-section h2 { font-size: 36px; }
-  .week-status { font-size: 11px; margin-bottom: 12px; }
+  .week-status { font-size: 16px; margin-bottom: 12px; }
   .week-content { min-height: 300px; }
   .upcoming-list { grid-template-columns: minmax(0,1fr); }
   .upcoming-list li, .upcoming-list li + li { padding: 18px 0; gap: 22px; border-left: 0; border-bottom: 1px solid var(--line); }
@@ -119,6 +119,29 @@
 @media(max-width:360px) {
   .home-hero .hero-actions { flex-direction: row; align-items: center; gap: 10px 18px; }
   .home-hero .hero-actions .button { padding-inline: 14px; gap: 14px; }
-  .home-hero .hero-actions .text-link { font-size: 13px; gap: 10px; }
+  .home-hero .hero-actions .text-link { font-size: 16px; gap: 10px; }
   .hero-service span { margin-left: 9px; }
+}
+
+/* The original sacred icon leads; parish photographs remain part of the welcome. */
+.home-hero .hero-inner { grid-template-columns: 1.1fr .9fr; }
+.home-hero .patron-icon { width: 100%; max-width: 420px; justify-self: center; margin: 0; height: auto; overflow: visible; background: none; }
+.home-hero .patron-icon:after { display: none; }
+.patron-icon > img { width: 100%; height: auto; object-fit: contain; }
+.patron-icon figcaption { color: #e0d4bd; font-size: 16px; text-align: center; line-height: 1.6; padding-top: 16px; }
+.parish-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; padding-bottom: 0; }
+.parish-gallery figure { margin: 0; }
+.parish-gallery img { width: 100%; height: 320px; object-fit: cover; }
+.parish-gallery figcaption { font-size: 16px; color: var(--muted); line-height: 1.6; padding-top: 16px; }
+@media(max-width:700px) {
+  .home-hero .hero-inner { grid-template-columns: minmax(0,1fr); }
+  .home-hero .patron-icon { order: -1; max-width: 210px; }
+  .patron-icon figcaption { font-size: 14px; padding-top: 10px; }
+  .home-hero .hero-copy { text-align: center; }
+  .home-hero .hero-description { margin-inline: auto; }
+  .home-hero h1 em { display: inline; }
+  .home-hero .hero-actions { justify-content: center; }
+  .hero-address { justify-content: center; }
+  .parish-gallery { grid-template-columns: minmax(0,1fr); gap: 28px; }
+  .parish-gallery img { height: auto; max-height: 340px; object-fit: contain; }
 }

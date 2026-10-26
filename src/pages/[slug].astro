@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Sidebar from '../components/Sidebar.astro';
 import content from '../data/content.json';
-export function getStaticPaths(){return content.map(page=>({params:{slug:page.slug},props:{page}}));}
+export function getStaticPaths(){return content.filter(page=>!['our-story','our-clergy'].includes(page.slug)).map(page=>({params:{slug:page.slug},props:{page}}));}
 const { page } = Astro.props;
 const descriptions:Record<string,string>={'our-story':'From a small room at a Holiday Inn to a growing church family in Fort Myers.','our-clergy':'Meet Father Hans Jacobse, pastor of St. Peter since the parish began in 2008.','the-creed':'The Nicene Creed: the shared confession of the Orthodox Christian faith.','the-lords-prayer':'The prayer Jesus taught His disciples.','akathists':'Prayers of praise and thanksgiving for your life in Christ.'};
 ---
-<Layout title={page.title} description={descriptions[page.slug]}><PageIntro title={page.title} description={descriptions[page.slug]}/><div class="wrap page-body content-grid"><article class="prose" set:html={page.html}/><Sidebar/></div></Layout>
+<Layout title={page.title} description={descriptions[page.slug]}><PageIntro title={page.title} description={descriptions[page.slug]} parent={{label:"Faith & prayers",href:"/orthodoxy/"}}/><div class="wrap page-body content-grid"><article class="prose" set:html={page.html}/><Sidebar/></div></Layout>

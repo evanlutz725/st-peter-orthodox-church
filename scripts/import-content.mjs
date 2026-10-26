@@ -18,6 +18,10 @@ const slugs = ['what-we-are','our-story','our-clergy','sacraments','governing','
 const paths = new Map(slugs.map(s => [`/${s}/`, `/${s}/`]));
 for (const [a,b] of Object.entries({about:'about',homepage:'',home:'',calendar:'calendar',homilies:'homilies',contact:'contact','new-to-the-area':'visit',newsletter:'news','category/news':'news',worship:'orthodoxy',glossary:'resources',podcasts:'resources','orthodox-arts':'resources','video-and-radio':'resources'})) paths.set(`/${a}/`, `/${b}${b?'/':''}`);
 for (const p of posts) paths.set(new URL(p.link).pathname, `/news/${p.slug}/`);
+paths.set('/our-story/', '/about/#our-story');
+paths.set('/our-clergy/', '/about/#our-clergy');
+paths.set('/resources/', '/orthodoxy/#prayers');
+for (const legacy of ['glossary','podcasts','orthodox-arts','video-and-radio']) paths.set(`/${legacy}/`, '/orthodoxy/#prayers');
 const assets = new Map();
 async function localImage(url) {
   if (assets.has(url)) return assets.get(url);

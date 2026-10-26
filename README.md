@@ -16,13 +16,15 @@ Astro 7 requires Node 22.23.4 or newer. A compatible Node runtime is included as
 
 ## Content and features
 
-- Static HTML pages with a small amount of JavaScript for the mobile menu, resource search/filter, and homepage upcoming-events list.
+- Static HTML pages with small scripts for the mobile menu, faith-library search/filter, homepage upcoming events, and the responsive weekly calendar.
 - Clear service time, directions, first-visit guidance, and call/text contact actions.
 - Eight migrated parish and prayer articles, plus six recent newsletters imported from the public WordPress REST API.
 - Six recent podcast episodes imported from the parish's public RSS feed, with native audio controls and Apple Podcasts / Amazon Music links.
-- The parish's existing public Google Calendar in a weekly grid, with an ICS subscription and direct-link fallback. The homepage shows the next three timed gatherings in the next seven days through a small Netlify Function; responses are cached for up to five minutes and a regular-Sunday fallback remains available.
-- Self-hosted, licensed Latin font subsets and responsive WebP image sources keep the initial page lightweight.
-- Local optimized WebP images sourced from the existing parish website. The homepage and visit page use parish-archive worship photography; Father Hans's photograph is also from the original parish site. Remaining generic interior imagery on other pages is not independently identified as this parish. See `docs/parish-content-sources.md`.
+- A native weekly calendar: seven columns on desktop, two columns on tablets, and readable day cards on phones. There is no embedded frame or horizontal calendar scrolling. A Netlify Function reads the original public Google Calendar; previous/next/current week controls, all-day feasts, timed services, cancellations, and daylight-saving changes are supported. Google Calendar and ICS subscription links remain available.
+- The homepage shows the next three timed gatherings in the next seven days through a small Netlify Function. Both calendar endpoints cache successful responses for up to five minutes and show useful fallbacks if unavailable.
+- Self-hosted Lora headings at semibold weight and DM Sans body text, with 18 px main prose, darker secondary text, and larger controls for readability.
+- The original blue and gold Saint Peter icon leads the homepage and appears in every header/footer. Its lossless WebP copy preserves the original RGBA pixels. Parish worship and exterior photography, Father Hans, and original-site candlelit worship imagery provide a fuller visual identity.
+- Local optimized WebP images sourced from the existing parish website. The homepage and visit page use parish-archive worship photography; Father Hans's photograph is also from the original parish site. Candlelit Orthodox worship imagery on the faith page is not independently identified as this parish. See `docs/parish-content-sources.md`.
 - Accessible navigation, skip link, keyboard focus styles, reduced-motion support, responsive layouts, metadata, and old-path redirects.
 
 This is a content snapshot, not a live WordPress integration. Refresh imported articles, newsletters, and podcast episodes with:
@@ -35,7 +37,7 @@ npm run check:links
 
 Review the resulting source diff before committing. The import strips WordPress form/plugin runtime and untrusted inline styles/scripts, rewrites migrated links, and downloads optimized article images. The Google Calendar and hosted audio remain live external services. Older newsletters remain available through the original archive link. Broken legacy `/sermon/` links are replaced by the current parish podcast.
 
-Common parish details and resource cards: `src/data/site.ts`. Layout and navigation: `src/layouts/Layout.astro`. Colors, typography, and responsive styles: `src/styles/global.css`. Imported content: `src/data/*.json`.
+Primary navigation, parish details, and resource cards: `src/data/site.ts`. Our parish, clergy, and history share `/about/`; the faith introduction and prayer library share `/orthodoxy/`. Old `/our-clergy/`, `/our-story/`, and `/resources/` URLs redirect to their new sections. Homilies, Calendar, News, Contact, and Plan your visit are all available directly in the header. Layout and navigation: `src/layouts/Layout.astro`. Colors, typography, and responsive styles: `src/styles/global.css`. Imported content: `src/data/*.json`.
 
 ## Deployment
 

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { upcomingFromICS } from '../netlify/lib/upcoming.mjs';
+import { upcomingFromICS, weeklyFromICS, localMidnight, currentWeekStart } from '../netlify/lib/upcoming.mjs';
 
 const calendar = (...events) => `BEGIN:VCALENDAR\r\nVERSION:2.0\r\n${events.join('\r\n')}\r\nEND:VCALENDAR`;
 const event = (uid, properties) => `BEGIN:VEVENT\r\nUID:${uid}\r\n${properties.join('\r\n')}\r\nEND:VEVENT`;
@@ -47,4 +47,35 @@ test('past and distant events are excluded; ongoing events are retained', async 
 test('empty calendars are valid and upstream HTML is rejected', async () => {
   assert.deepEqual(await upcomingFromICS(calendar()),[]);
   await assert.rejects(upcomingFromICS('<html>Unavailable</html>'));
+});
+
+test('week boundaries follow Fort Myers time across daylight saving and UTC midnight',()=>{
+  assert.equal(localMidnight('2026-11-01').toISOString(),'2026-11-01T04:00:00.000Z');
+  assert.equal(localMidnight('2026-11-02').toISOString(),'2026-11-02T05:00:00.000Z');
+  assert.equal(currentWeekStart(new Date('2026-10-26T02:00:00Z')),'2026-10-25');
+});
+
+test('weekly calendar has seven days, full-day feasts, timed events, and empty days',async()=>{
+  const source=calendar(
+    event('feast',['SUMMARY:ST. DEMETRIOS','DTSTART;VALUE=DATE:20261026','DTEND;VALUE=DATE:20261027']),
+    event('service',['SUMMARY:Divine Liturgy','DTSTART:20261026T130000Z','DTEND:20261026T140000Z']),
+    event('nextweek',['SUMMARY:Next Sunday','DTSTART:20261101T140000Z','DTEND:20261101T150000Z'])
+  );
+  const result=await weeklyFromICS(source,'2026-10-25');
+  assert.equal(result.days.length,7);
+  assert.equal(result.days[0].date,'2026-10-25');
+  assert.equal(result.days[6].date,'2026-10-31');
+  assert.equal(result.days[0].events.length,0);
+  assert.deepEqual(result.days[1].events.map(e=>e.title),['St. Demetrios','Divine Liturgy']);
+  assert.equal(result.days[1].events[0].allDay,true);
+  assert.equal(result.days.flatMap(d=>d.events).length,2);
+});
+
+test('weekly calendar places overnight events on both days and rejects invalid dates',async()=>{
+  const source=calendar(event('overnight',['SUMMARY:Night vigil','DTSTART;TZID=America/New_York:20261030T230000','DTEND;TZID=America/New_York:20261031T020000']));
+  const result=await weeklyFromICS(source,'2026-10-25');
+  assert.equal(result.days[5].events[0].continues,false);
+  assert.equal(result.days[6].events[0].continues,true);
+  await assert.rejects(weeklyFromICS(source,'2026-02-30'),RangeError);
+  await assert.rejects(weeklyFromICS(source,'not-a-date'),RangeError);
 });

@@ -1,4 +1,4 @@
 ---
-const { title, label = 'St. Peter Orthodox Church', description } = Astro.props;
+const { title, label = 'St. Peter Orthodox Church', description, parent } = Astro.props;
 ---
-<section class="page-intro"><div class="wrap"><div class="breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{title}</span></div><p class="eyebrow">{label}</p><h1>{title}</h1>{description && <p>{description}</p>}</div></section>
+<section class="page-intro"><div class="wrap"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span>{parent && <><a href={parent.href}>{parent.label}</a><span aria-hidden="true">/</span></>}<span aria-current="page">{title}</span></nav><p class="eyebrow">{label}</p><h1>{title}</h1>{description && <p>{description}</p>}</div></section>

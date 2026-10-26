@@ -1,8 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
+import WeekCalendar from '../components/WeekCalendar.astro';
 import Icon from '../components/Icon.astro';
 import {site} from '../data/site';
-const calendarUrl=`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(site.calendarId)}&ctz=America%2FNew_York&mode=WEEK&wkst=1&showTitle=0&showPrint=0&showCalendars=0&showTabs=0&showTz=1&bgcolor=%23f3eadc`;
+import '../styles/calendar.css';
 ---
-<Layout title="Parish calendar"><PageIntro title="A rhythm of prayer." label="Parish calendar" description="Worship, feast days, and life together at St. Peter. All times are local to Fort Myers, Florida (Eastern Time)."/><div class="wrap page-body"><div class="section-heading"><div><p class="eyebrow">Our regular Sunday gathering</p><h2>Divine Liturgy · 9:30 am</h2></div><a class="text-link" href="/visit/">First time here? <Icon name="arrow" size={17}/></a></div><p>Consult the parish calendar for Orthros, additional services, special events, and changes to the regular schedule.</p><p class="calendar-scroll-hint">Weekly view · On a smaller screen, swipe or scroll sideways to see the full week.</p><div class="calendar-viewport" role="region" aria-label="Weekly parish calendar; scroll horizontally to see all seven days" tabindex="0"><iframe class="calendar-frame" src={calendarUrl} title="St. Peter Orthodox Church weekly calendar grid, Eastern Time" loading="lazy"></iframe></div><div class="notice">If the embedded calendar does not appear, <a class="text-link" href={`https://calendar.google.com/calendar/u/0/r?cid=${encodeURIComponent(site.calendarId)}`} target="_blank" rel="noopener">open the parish calendar in Google Calendar <Icon name="northeast" size={15}/></a>. You can also confirm service times by calling <a href="tel:+12392217537">{site.phone}</a>.</div><a class="button button-outline" href={`https://calendar.google.com/calendar/ical/${encodeURIComponent(site.calendarId)}/public/basic.ics`}>Subscribe to the calendar <Icon name="calendar" size={18}/></a></div></Layout>
+<Layout title="Parish calendar"><PageIntro title="Worship and parish life." label="Parish calendar" description="Choose a week to see services, feast days, and parish gatherings. All times are local to Fort Myers, Florida (Eastern Time)."/>
+  <div class="wrap page-body">
+    <div class="section-heading"><div><p class="eyebrow">Our regular Sunday gathering</p><h2>Divine Liturgy · 9:30 am</h2></div><a class="text-link" href="/visit/">Planning your first visit? <Icon name="arrow" size={17}/></a></div>
+    <p>Check the week below for Orthros, additional services, feast days, and changes to the regular schedule.</p>
+    <WeekCalendar/>
+    <div class="notice"><a class="text-link" href={`https://calendar.google.com/calendar/u/0/r?cid=${encodeURIComponent(site.calendarId)}`} target="_blank" rel="noopener">Open in Google Calendar <Icon name="northeast" size={16}/></a><p>To confirm a service time, call <a href="tel:+12392217537">{site.phone}</a>.</p></div>
+    <a class="button button-outline" href={`https://calendar.google.com/calendar/ical/${encodeURIComponent(site.calendarId)}/public/basic.ics`}>Subscribe to the calendar <Icon name="calendar" size={18}/></a>
+  </div>
+</Layout>

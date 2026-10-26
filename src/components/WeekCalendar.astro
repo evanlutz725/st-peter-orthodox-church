@@ -1,0 +1,73 @@
+<div class="parish-calendar">
+  <div class="week-controls" role="group" aria-label="Choose a calendar week" hidden>
+    <button type="button" data-week-step="-1"><span aria-hidden="true">←</span> Previous week</button>
+    <button type="button" data-week-today>This week</button>
+    <button type="button" data-week-step="1">Next week <span aria-hidden="true">→</span></button>
+  </div>
+  <h2 class="calendar-range" id="calendar-range">Parish services and gatherings</h2>
+  <p class="calendar-status" role="status" aria-live="polite">All times Eastern</p>
+  <div class="native-week" aria-labelledby="calendar-range" aria-busy="false"></div>
+  <div class="calendar-fallback" hidden><p>The calendar is temporarily unavailable. Sunday Divine Liturgy is normally at 9:30 am. Please check Google Calendar or call the parish to confirm this week’s services.</p></div>
+  <noscript><p>To see the current schedule with JavaScript disabled, open the parish calendar using the link below or call the parish office.</p></noscript>
+</div>
+<script>
+  const calendar=document.querySelector<HTMLElement>('.parish-calendar');
+  const grid=calendar?.querySelector<HTMLElement>('.native-week');
+  const range=calendar?.querySelector<HTMLElement>('.calendar-range');
+  const status=calendar?.querySelector<HTMLElement>('.calendar-status');
+  const fallback=calendar?.querySelector<HTMLElement>('.calendar-fallback');
+  if(calendar&&grid&&range&&status&&fallback) {
+    const controls=calendar.querySelector<HTMLElement>('.week-controls');
+    if(controls) controls.hidden=false;
+    const dateKey=(date:Date)=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(date);
+    const shift=(key:string,days:number)=>{const d=new Date(`${key}T12:00:00Z`);d.setUTCDate(d.getUTCDate()+days);return d.toISOString().slice(0,10);};
+    const today=dateKey(new Date());
+    const thisWeek=shift(today,-new Date(`${today}T12:00:00Z`).getUTCDay());
+    let selected=thisWeek;
+    let pending:AbortController|undefined;
+    const formatDate=(key:string,options:Intl.DateTimeFormatOptions)=>new Intl.DateTimeFormat('en-US',{timeZone:'UTC',...options}).format(new Date(`${key}T12:00:00Z`));
+    async function loadWeek() {
+      pending?.abort();
+      const controller=new AbortController();pending=controller;
+      const requested=selected;
+      const buttons=calendar!.querySelectorAll<HTMLButtonElement>('button');
+      const focusedControl=document.activeElement instanceof HTMLButtonElement && calendar!.contains(document.activeElement) ? document.activeElement : null;
+      buttons.forEach(button=>button.disabled=true);
+      grid!.setAttribute('aria-busy','true');grid!.replaceChildren();fallback!.hidden=true;
+      range!.textContent=`${formatDate(selected,{month:'long',day:'numeric'})} – ${formatDate(shift(selected,6),{month:'long',day:'numeric',year:'numeric'})}`;
+      status!.textContent='Loading this week’s services and gatherings…';
+      const timeout=setTimeout(()=>controller.abort(),12000);
+      try {
+        const response=await fetch(`/.netlify/functions/week?start=${encodeURIComponent(requested)}`,{signal:controller.signal});
+        if(!response.ok) throw new Error('Calendar unavailable');
+        const data=await response.json();
+        if(!Array.isArray(data.days)||data.days.length!==7||data.start!==requested) throw new Error('Invalid calendar');
+        const sections=data.days.map((day:{date:string;events:{title:string;start:string;end:string;allDay:boolean;continues:boolean}[]})=>{
+          const section=document.createElement('section');section.className='calendar-day';
+          if(day.date===today) section.classList.add('is-today');
+          const heading=document.createElement('h3');const stamp=document.createElement('time');stamp.dateTime=day.date;
+          const weekday=document.createElement('span');weekday.textContent=formatDate(day.date,{weekday:'long'});
+          const number=document.createElement('strong');number.textContent=formatDate(day.date,{day:'numeric'});
+          stamp.append(weekday,number);heading.append(stamp);section.append(heading);
+          if(day.date===today){const label=document.createElement('span');label.className='today-label';label.textContent='Today';heading.append(label);}
+          if(!Array.isArray(day.events)) throw new Error('Invalid calendar day');
+          if(!day.events.length){const empty=document.createElement('p');empty.className='day-empty';empty.textContent='No events listed';section.append(empty);}
+          else {const list=document.createElement('ul');for(const event of day.events){const item=document.createElement('li');const time=document.createElement('span');time.className='calendar-event-time';time.textContent=event.allDay?'All day':event.continues?'Continues':new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}).format(new Date(event.start));const title=document.createElement('p');title.textContent=event.title;item.append(time,title);list.append(item);}section.append(list);}
+          return section;
+        });
+        if(pending!==controller) return;
+        grid!.replaceChildren(...sections);
+        status!.textContent='All times Eastern · Updated from the parish calendar';
+      } catch {
+        if(pending!==controller) return;
+        fallback!.hidden=false;status!.textContent='Unable to load this week’s schedule.';
+      } finally {
+        clearTimeout(timeout);
+        if(pending===controller){grid!.setAttribute('aria-busy','false');buttons.forEach(button=>button.disabled=false);if(focusedControl&&document.activeElement===document.body)focusedControl.focus();}
+      }
+    }
+    calendar.querySelectorAll<HTMLButtonElement>('[data-week-step]').forEach(button=>button.addEventListener('click',()=>{selected=shift(selected,Number(button.dataset.weekStep)*7);loadWeek();}));
+    calendar.querySelector('[data-week-today]')?.addEventListener('click',()=>{selected=thisWeek;loadWeek();});
+    loadWeek();
+  }
+</script>

@@ -1,4 +1,5 @@
 ---
 import Icon from './Icon.astro';
+import {primaryNavigation} from '../data/site';
 ---
-<aside class="sidebar" aria-label="Explore the parish"><p class="eyebrow">Keep exploring</p><h2>A life in Christ.</h2><p>Learn about our parish and the faith we share.</p><a href="/about/">Our parish <Icon name="arrow" size={16}/></a><a href="/our-story/">Our story <Icon name="arrow" size={16}/></a><a href="/our-clergy/">Meet Father Hans <Icon name="arrow" size={16}/></a><a href="/orthodoxy/">Explore Orthodoxy <Icon name="arrow" size={16}/></a><a href="/resources/">Prayers & resources <Icon name="arrow" size={16}/></a><a class="button" href="/visit/">Plan your visit <Icon name="arrow" size={16}/></a></aside>
+<aside class="sidebar" aria-label="Parish navigation"><p class="eyebrow">Find your way</p><h2>At St. Peter.</h2>{primaryNavigation.map(([label,href])=><a href={href}>{label} <Icon name="arrow" size={18}/></a>)}<a class="button" href="/visit/">Plan your visit <Icon name="arrow" size={18}/></a></aside>

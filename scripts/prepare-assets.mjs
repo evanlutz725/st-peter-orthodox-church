@@ -10,10 +10,10 @@ const fonts = path.join(assets, 'fonts');
 // Latin subsets served by the official Google Fonts CSS API, pinned to their
 // versioned CDN URLs. All fonts retain their upstream SIL Open Font License.
 const downloads = [
-  ['cormorant-garamond-latin-normal.woff2', 'https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2'],
-  ['cormorant-garamond-latin-italic.woff2', 'https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd5wDD-iNM8.woff2'],
+  ['lora-latin-normal.woff2', 'https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2'],
+  ['lora-latin-italic.woff2', 'https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LIftL.woff2'],
   ['dm-sans-latin-normal.woff2', 'https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K4.woff2'],
-  ['Cormorant-Garamond-OFL.txt', 'https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/OFL.txt'],
+  ['Lora-OFL.txt', 'https://raw.githubusercontent.com/google/fonts/main/ofl/lora/OFL.txt'],
   ['DM-Sans-OFL.txt', 'https://raw.githubusercontent.com/google/fonts/main/ofl/dmsans/OFL.txt'],
 ];
 
@@ -34,7 +34,7 @@ for (const [name, url] of downloads) {
 
 await writeFile(path.join(fonts, 'SOURCES.txt'), [
   'Self-hosted Latin font subsets. Downloaded from the official Google Fonts CDN.',
-  'Cormorant Garamond: normal variable 500-600; italic 500.',
+  'Lora: normal and italic variable 500-700.',
   'DM Sans: normal variable 400-700.',
   'Font licenses are included in the adjacent OFL files.',
   '',
