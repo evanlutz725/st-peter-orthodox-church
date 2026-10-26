@@ -4,6 +4,7 @@ export const site = {
   address: '7470 Hickory Drive',
   city: 'Fort Myers, FL 33967',
   phone: '(239) 221-7537',
+  phoneHref: 'tel:+12392217537',
   directions: 'https://www.google.com/maps/dir/?api=1&destination=St+Peter+the+Apostle+Orthodox+Church+7470+Hickory+Dr+Fort+Myers+FL+33967',
   calendarId: 'lmvofhvvg09vnvd6tqlglbh838@group.calendar.google.com',
 };

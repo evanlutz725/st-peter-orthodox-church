@@ -100,3 +100,10 @@ October 25, 2026. This revision supersedes the embedded/calendar-scrolling behav
 - Removed resource category tabs and category labels. Search, result counts, empty state, and resource links remain.
 - Build and static checks passed across 23 pages, 829 local links/assets/fragments, and 128 image instances.
 - Browser-checked home, parish, and faith pages at 320, 390, 768, and 1440 px: 12 checks with no document overflow. Verified circular header icons, restored hero image, and removal of resource categories. Searching creed returned one result; an unmatched query showed the empty state.
+
+## Church phone contact routing
+
+- Removed Father Hans’s direct call/text actions and personal phone number from homepage, parish, visit, and contact pages. All current contact actions for him direct visitors to the church office at (239) 221-7537. Contact-page copy and privacy wording reflect phone/postal contact rather than texting.
+- Added a shared church phone link to parish data. Contact page now has two panels: church phone and parish location.
+- Build and static checks passed across all 23 pages. Source/build search found no SMS links, removed personal number, or instructions to text Father Hans.
+- Browser-checked the four affected pages at 320, 390, and 1440 px: 12 checks passed with no document overflow. Every inspected telephone action pointed to the church number, and no SMS action remained.

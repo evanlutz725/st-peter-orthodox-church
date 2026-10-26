@@ -17,7 +17,7 @@ Astro 7 requires Node 22.23.4 or newer. A compatible Node runtime is included as
 ## Content and features
 
 - Static HTML pages with small scripts for the mobile menu, faith-library search, homepage upcoming events, and the responsive weekly calendar.
-- Clear service time, directions, first-visit guidance, and call/text contact actions.
+- Clear service time, directions, first-visit guidance, and church phone contact actions.
 - Eight migrated parish and prayer articles, plus six recent newsletters imported from the public WordPress REST API.
 - Six recent podcast episodes imported from the parish's public RSS feed, with native audio controls and Apple Podcasts / Amazon Music links.
 - A native weekly calendar: seven columns on desktop, two columns on tablets, and readable day cards on phones. There is no embedded frame or horizontal calendar scrolling. A Netlify Function reads the original public Google Calendar; previous/next/current week controls, all-day feasts, timed services, cancellations, and daylight-saving changes are supported. Google Calendar and ICS subscription links remain available.
